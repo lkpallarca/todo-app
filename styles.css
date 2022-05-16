@@ -1,0 +1,256 @@
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+  font-family: 'Open Sans', sans-serif;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+  background-color: hsl(34, 44%, 73%);
+  color: hsl(0, 0%, 100%);
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+::placeholder { 
+  color: white;
+  opacity: 1; 
+}
+
+:-ms-input-placeholder { 
+  color: white;
+}
+
+::-ms-input-placeholder {
+  color: white;
+}
+
+input:focus { 
+	outline: none !important;
+}
+
+/* ======================================================== */
+
+h1 {
+	position: relative;
+  font-family: 'Amatic SC', cursive;
+	font-size: 13vmin;
+	margin: 5vh 3vw;
+}
+
+@media only screen and (max-width:720px) {
+	h1 {
+		font-size: 8vmin;
+	}	
+
+	h1::after {
+		display: none;
+	}
+}
+
+h1::after {
+	content: '♡';
+	position: absolute;
+	top: 0;
+	left: 520px;
+	font-size: 40px;
+}
+
+h2 {
+	position: relative;
+  font-family: 'Amatic SC', cursive;
+	font-size: 40px;
+	margin: 5vh 3vw;
+}
+
+h2::after {
+	content: '';
+	position: absolute;
+	bottom: -10%;
+	left: 0;
+	width: 30%;
+	width: 350px;
+	height: 2px;
+	background-color: white;	
+}
+
+#clock {
+	position: fixed;
+	top: 5vh;
+	right: 3vw;
+	font-size: 50px;
+}
+
+#today-date {
+	position: fixed;
+	top: 13vh;
+	right: 3vw;
+	font-size: 25px;
+}
+
+.add-todo-group, .add-todo-group-future {
+	margin: 10px 3vw;
+}
+
+#todo-input-task, 
+#todo-input-date, 
+#todo-input-task-future, 
+#todo-input-date-future,
+#todo-input-deadline-future {
+	font-size: 16px;
+  color: hsl(0, 0%, 100%);
+	background-color: transparent;
+	padding: 10px;
+	border-radius: 10px;
+	border: 2px solid hsl(34, 44%, 30%);
+}
+
+#todo-input-date, 
+#todo-input-date-future,
+#todo-input-deadline-future {
+	width: 70px;
+}
+
+#add-trigger, #add-trigger-future {
+	cursor: pointer;
+	border-radius: 40px;
+	padding: 10px;
+	background-color: hsl(34, 44%, 30%);
+	color: white;
+	border: none;
+}
+
+.todo-display {
+	display: flex;
+	flex-direction: column;
+}
+
+div {
+	width: auto;
+	word-break: break-all;
+}
+
+span {
+  margin-left: 10px;
+}
+
+p {
+  font-family: 'Open Sans', sans-serif;
+	position: relative;
+	font-size: 30px;
+	margin: 0 auto 25px auto;
+}
+
+p::after {
+	content: '♡';
+	position: absolute;
+	top: 4px;
+	right: -25px;
+	font-size: 20px;
+}
+
+p::before {
+	content: '♡';
+	position: absolute;
+	top: 4px;
+	left: -25px;
+	font-size: 20px;
+}
+
+.todo-group {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	border: 5px solid hsl(34, 44%, 30%);
+	border-radius: 10px;
+	width: 340px;
+	font-size: 20px;
+	margin-left: 3vw;
+	margin-bottom: 5vh;
+	padding: 20px 0 10px 0;
+}
+
+.todo-wrapper {
+	display: flex;
+	position: relative;
+	padding: 5px 20px;
+}
+
+.todo-name {
+	max-width: 230px;
+	word-break: keep-all;
+}
+
+.todo-del, .todo-group-del {
+	cursor: pointer;
+	position: absolute;
+	top: 8px;
+	right: 15px;
+	background-color: transparent;
+	border: none;
+}
+
+.todo-wrapper::after {
+	content: '';
+	position: absolute;
+	bottom: 0;
+	left: 15%;
+	width: 237.5px;
+	height: 2px;
+	background-color: hsl(34, 44%, 30%);
+}
+
+.checkbox {
+	margin-right: 15px;
+}
+
+.brown-tape {
+	position: absolute;
+	top: -40px;
+	left: 97.5px;
+	height: 70px;
+	width: 150px;
+}

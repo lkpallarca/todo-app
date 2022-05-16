@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Amatic+SC&family=Open+Sans:wght@300&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Amatic+SC&family=Archivo&family=M+PLUS+1p:wght@300&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Amatic+SC&family=Archivo&display=swap" rel="stylesheet">
+  <title>To-Do List</title>
+</head>
+<body>
+  <h1>SHALYN'S DAILY PLANNER</h1>
+  <h3 id="clock"></h3>
+  <h3 id="today-date"></h3>
+  <h2>ADD TODOS TODAY</h2>
+  <form class="add-todo-group">
+    <input id="todo-input-task" type="text" placeholder="Type todo here" required>
+    <input id="todo-input-date" type="number" placeholder="Deadline" required>
+    <button id="add-trigger">Add Todo</button>
+  </form>
+  <h2>ADD TODOS IN THE FUTURE</h2>
+  <form class="add-todo-group-future">
+    <input id="todo-input-date-future" type="number" placeholder="Date" required>
+    <input id="todo-input-task-future" type="text" placeholder="Type todo here" required>
+    <input id="todo-input-deadline-future" type="number" placeholder="Deadline" required>
+    <button id="add-trigger-future">Add Todo</button>
+  </form>
+  <h2>CURRENT TODOS</h2>
+  <div class="todo-display"></div>
+<script src="scripts.js"></script>
+</body>
+</html>
