@@ -68,6 +68,22 @@ const getDate = () => {
   return today
 }
 
+const getHour = () => {
+  const day = new Date();
+  const hour = day.getHours();
+  
+  if(hour < 12) {
+    return `GOOD MORNING, SHALYN`
+  } else if(hour > 12 && hour < 18) {
+    return `GOOD AFTERNOON, SHALYN`
+  } else if(hour > 18) {
+    return `GOOD EVENING, SHALYN`
+  } else {
+    return `MAGANDANG TANGHALI, SHALYN`
+  }
+}
+
+
 const getId = () => {
   const day = new Date();
   const sec = day.getSeconds();
@@ -116,6 +132,8 @@ setInterval(() => {
 }, 1000);
 
 // ====================================
+
+$('class', 'message').innerHTML = getHour();
 
 $('id', 'add-trigger').addEventListener('click', (event) => {
   event.preventDefault();
@@ -200,7 +218,7 @@ const render = () => {
     })
     
     div.innerHTML = task.task;
-    delButton.innerHTML = '❌'
+    delButton.innerHTML = '✖️'
 
     if(task.deadline !== '') {
       span.innerHTML = ` - deadline is ${task.deadline}`;
@@ -250,7 +268,7 @@ const render = () => {
   });
 
   if(document.getElementById(`g${getDate()}`)) {
-    document.getElementById(`g${getDate()}`).style.backgroundColor = '#c35c5a';
+    document.getElementById(`g${getDate()}`).style.backgroundColor = '#B2AC88';
   }
 }
 
