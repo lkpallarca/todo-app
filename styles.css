@@ -194,8 +194,9 @@ h2::after {
 }
 
 .todo-display {
-	display: flex;
-	flex-direction: column;
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	grid-template-rows: auto;
 }
 
 div {
@@ -339,7 +340,7 @@ p::before {
 #font-btn {
 	position: absolute;
 	top: 10px;
-	right: 10px;
+	left: 10px;
 	cursor: pointer;
 	background-color: transparent;
 	border: none;
@@ -364,5 +365,15 @@ p::before {
 
 	.greeting {
 		width: 60vw;
+	}
+
+	.todo-display {
+		display: grid;
+		grid-template-columns: 1fr;
+		grid-template-rows: auto;
+	}
+
+	.change-font {
+		width: 20px;
 	}
 }
