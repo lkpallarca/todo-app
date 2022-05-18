@@ -25,10 +25,6 @@ footer, header, hgroup, menu, nav, section {
 	display: block;
 }
 body {
-	background-image: url('https://images.unsplash.com/random');
-	background-size: cover;
-	background-repeat: no-repeat;
-	background-position: center;
   background-color: hsl(34, 44%, 73%);
   color: hsl(0, 0%, 100%);
 	line-height: 1;
@@ -108,14 +104,9 @@ input:focus {
 h1 {
 	position: relative;
   font-family: 'Amatic SC', cursive;
-	font-size: 80px;
+	font-size: 50px;
 	width: fit-content;
 	margin: 5vh auto 2vh auto;
-	color: hsl(0, 0%, 20%);
-}
-
-h3 {
-	color: hsl(0, 0%, 20%);
 }
 
 h1::after {
@@ -144,18 +135,30 @@ h2::after {
 	background-color: white;	
 }
 
+.greeting {
+	position: relative;
+	border: 5px solid white;
+	border-radius: 40px;
+	width: 50vw;
+	padding-bottom: 40px;
+	margin: 2vh auto auto auto;
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: center;
+}
+
 #clock {
   font-family: 'Gruppo', cursive;
 	width: fit-content;
 	margin: auto;
-	font-size: 75px;
+	font-size: 55px;
 }
 
 #today-date {
   font-family: 'Gruppo', cursive;
 	width: fit-content;
 	margin: auto;
-	font-size: 50px;
+	font-size: 30px;
 }
 
 .add-todo-group, .add-todo-group-future {
@@ -316,6 +319,32 @@ p::before {
 	background-size: 100% 50px;
 }
 
+.bg-input {
+	position: absolute;
+	top: 0;
+	left: 0;
+	background-color: transparent;
+	border: 2px solid hsl(34, 44%, 30%);
+	width: 50px;
+}
+
+#img-button {
+	visibility: hidden;
+}
+
+.change-font {
+	width: 30px;
+}
+
+#font-btn {
+	position: absolute;
+	top: 10px;
+	right: 10px;
+	cursor: pointer;
+	background-color: transparent;
+	border: none;
+}
+
 @media only screen and (max-width:720px) {
 	h1 {
 		font-size: 8vmin;
@@ -331,5 +360,9 @@ p::before {
 
 	.input-section {
 		flex-direction: column;
+	}
+
+	.greeting {
+		width: 60vw;
 	}
 }

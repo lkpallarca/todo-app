@@ -13,9 +13,14 @@
   <title>To-Do List</title>
 </head>
 <body>
-  <h1 class="message"></h1>
-  <h3 id="clock"></h3>
-  <h3 id="today-date"></h3>
+  <div class="greeting">
+    <button id="font-btn">
+      <img src="./assets/refresh.png" class="change-font">
+    </button>
+    <h1 class="message"></h1>
+    <h3 id="clock"></h3>
+    <h3 id="today-date"></h3>
+  </div>
   <section class="input-section">
     <div>
       <h2>NOTEPAD</h2>
@@ -25,20 +30,24 @@
       <h2>TO DO LIST ...</h2>
       <form class="add-todo-group">
         <input id="todo-input-task" type="text" placeholder="Type todo here" required>
-        <input id="todo-input-date" type="number" placeholder="Deadline" required>
+        <input id="todo-input-date" type="number" placeholder="Deadline">
         <button id="add-trigger">Add Todo</button>
       </form>
       <h2>ADD TO DOS IN THE FUTURE</h2>
       <form class="add-todo-group-future">
         <input id="todo-input-date-future" type="number" placeholder="Date" required>
         <input id="todo-input-task-future" type="text" placeholder="Type todo here" required>
-        <input id="todo-input-deadline-future" type="number" placeholder="Deadline" required>
+        <input id="todo-input-deadline-future" type="number" placeholder="Deadline">
         <button id="add-trigger-future">Add Todo</button>
       </form>
     </div>
   </section>
   <h2>CURRENT TODOS</h2>
   <div class="todo-display"></div>
-<script src="scripts.js"></script>
+  <form>
+    <input type="text" class="bg-input"></input>
+    <button type="submit" id="img-button"></button>
+  </form>
+  <script src="scripts.js"></script>
 </body>
 </html>

@@ -1,8 +1,8 @@
 // HELPER FUNCTIONS
 let TODO_LIST = [];
-let FUTURE_TODO_LIST = [];
 let todo_created_at = [];
-let future_todo_date = [];
+let bg_images = [];
+let font_color = false;
 
 const GET_TODOS = () => {
   return JSON.parse(localStorage.getItem('TODO_LIST'));
@@ -12,12 +12,8 @@ const get_todo_created_at = () => {
   return JSON.parse(localStorage.getItem('todo_created_at'));
 }
 
-const get_future_todo_date = () => {
-  return JSON.parse(localStorage.getItem('future_todo_date'));
-}
-
-const GET_FUTURE_TODOS = () => {
-  return JSON.parse(localStorage.getItem('FUTURE_TODO_LIST'));
+const get_bg_images = () => {
+  return JSON.parse(localStorage.getItem('background_images'));
 }
 
 const SET_TODOS = () => {
@@ -29,19 +25,14 @@ const set_todo_created_at = () => {
   localStorage.setItem('todo_created_at', JSON.stringify(filtered_todo_created_at));
 }
 
-const set_future_todo_date = () => {
-  const filtered_todo_date = [...new Set(future_todo_date)]
-  localStorage.setItem('future_todo_date', JSON.stringify(filtered_todo_date));
-}
-
-const SET_FUTURE_TODOS = () => {
-  localStorage.setItem('FUTURE_TODO_LIST', JSON.stringify(FUTURE_TODO_LIST));
+const set_bg_image = () => {
+  localStorage.setItem('background_images', JSON.stringify(bg_images));
 }
 
 const setAll = () => {
   SET_TODOS();
   set_todo_created_at();
-  set_future_todo_date();
+  set_bg_image();
 }
 
 const $ = (selector, name) => {
@@ -62,6 +53,10 @@ const elemAttr = (element, value, attr = 'class') => {
   element.setAttribute(attr, value);
 }
 
+const randomize = (array) => {
+  return Math.floor(Math.random() * array.length)
+}
+
 const getDate = () => {
   const day = new Date();
   const today = day.getDate();
@@ -78,11 +73,8 @@ const getHour = () => {
     return `GOOD AFTERNOON, SHALYN`
   } else if(hour > 18) {
     return `GOOD EVENING, SHALYN`
-  } else {
-    return `MAGANDANG TANGHALI, SHALYN`
   }
 }
-
 
 const getId = () => {
   const day = new Date();
@@ -131,9 +123,31 @@ setInterval(() => {
   time()
 }, 1000);
 
+const reset = () => {
+  $('id', 'todo-input-task').value = '';
+  $('id', 'todo-input-date').value = '';
+  $('id', 'todo-input-task-future').value = '';
+  $('id', 'todo-input-date-future').value = '';
+  $('id', 'todo-input-deadline-future').value = '';
+}
+
 // ====================================
 
 $('class', 'message').innerHTML = getHour();
+
+$('id', 'font-btn').addEventListener('click', () => {
+  if(font_color === false) {
+    font_color = true
+    $('class', 'message').style.color = 'black'
+    $('id', 'clock').style.color = 'black'
+    $('id', 'today-date').style.color = 'black'
+  } else {
+    font_color = false
+    $('class', 'message').style.color = 'white'
+    $('id', 'clock').style.color = 'white'
+    $('id', 'today-date').style.color = 'white'
+  }
+})
 
 $('id', 'add-trigger').addEventListener('click', (event) => {
   event.preventDefault();
@@ -143,6 +157,9 @@ $('id', 'add-trigger').addEventListener('click', (event) => {
   } else {
     dline = ''
   }
+  if($('id', 'todo-input-task').value.length === 0) {
+    return
+  }
   const new_task = {
     id: getId(),
     task: $('id', 'todo-input-task').value, 
@@ -151,10 +168,8 @@ $('id', 'add-trigger').addEventListener('click', (event) => {
   }
   TODO_LIST.push(new_task);
   todo_created_at.push(getDate());
-  SET_TODOS();
-  set_todo_created_at();
-  $('id', 'todo-input-task').value = '';
-  $('id', 'todo-input-date').value = '';
+  setAll();
+  reset();
   render();
 })
 
@@ -166,19 +181,20 @@ $('id', 'add-trigger-future').addEventListener('click', (event) => {
   } else {
     dline = ''
   }
+  if($('id', 'todo-input-task-future').value.length === 0 || $('id', 'todo-input-date-future').value.length === 0) {
+    return
+  }
   const new_task = {
     id: getId(),
     task: $('id', 'todo-input-task-future').value, 
     deadline: dline,
     date_created: parseInt($('id', 'todo-input-date-future').value)
   }
-  FUTURE_TODO_LIST.push(new_task);
-  future_todo_date.push(parseInt($('id', 'todo-input-date-future').value));
-  SET_FUTURE_TODOS();
-  set_future_todo_date();
-  $('id', 'todo-input-task-future').value = '';
-  $('id', 'todo-input-date-future').value = '';
-  $('id', 'todo-input-deadline-future').value = '';
+  TODO_LIST.push(new_task);
+  todo_created_at.push(parseInt($('id', 'todo-input-date-future').value));
+  setAll();
+  reset();
+  render();
 })
 
 const delOption = (task) => {
@@ -194,6 +210,14 @@ const bigDelOption = (date) => {
   setAll();
   render();
 }
+
+$('id', 'img-button').addEventListener('click', (event) => {
+  event.preventDefault();
+  $('class', 'greeting').style.backgroundImage = `url(${$('class', 'bg-input').value})`
+  bg_images.push($('class', 'bg-input').value)
+  set_bg_image();
+  $('class', 'bg-input').value = '';
+})
 
 const render = () => {
   $('class', 'todo-display').innerHTML = '';
@@ -274,38 +298,17 @@ const render = () => {
 
 // INITIALIZER
 if(getDate() === 1) {
-  SET_TODOS();
-  set_todo_created_at();
-  set_future_todo_date();
-  SET_FUTURE_TODOS();
+  setAll();
 }
 
-if(GET_TODOS() && get_todo_created_at() && GET_FUTURE_TODOS() && get_future_todo_date()) {
-  GET_TODOS().forEach(each => TODO_LIST.push(each))
-  get_todo_created_at().forEach(each => todo_created_at.push(each))
-  get_future_todo_date().forEach(each => future_todo_date.push(each))
-  const modify_future_todos = GET_FUTURE_TODOS().filter(task => task.date_created === getDate());
-  FUTURE_TODO_LIST = modify_future_todos;
+if(GET_TODOS() && get_todo_created_at() && get_bg_images()) {
+  GET_TODOS().forEach(each => TODO_LIST.push(each));
+  get_todo_created_at().forEach(each => todo_created_at.push(each));
+  get_bg_images().forEach(each => bg_images.push(each));
   render();
 } else {
   setAll();
 }
 
-GET_FUTURE_TODOS()?.forEach(task => {
-  if(task.date_created === getDate()) {
-    TODO_LIST.push(task);
-    SET_TODOS();
-  }
-})
-
-get_future_todo_date().forEach(date => {
-  if(date === getDate()) {
-    todo_created_at.push(date);
-    const modify_future_todo_date = future_todo_date.filter(each => each !== date);
-    future_todo_date = modify_future_todo_date;
-    set_todo_created_at();
-    set_future_todo_date();
-  }
-  render();
-});
+$('class', 'greeting').style.backgroundImage = `url(${bg_images[randomize(bg_images)]})`;
 // =============================
