@@ -1,6 +1,5 @@
 // HELPER FUNCTIONS
 let TODO_LIST = [];
-let TODO_GROUP = [];
 let todo_created_at = [];
 let bg_images = [];
 let font_color = false;
@@ -297,7 +296,7 @@ const render = () => {
   });
 
   if(document.getElementById(`g${getDate()}`)) {
-    document.getElementById(`g${getDate()}`).style.backgroundColor = '#B2AC88';
+    document.getElementById(`g${getDate()}`).style.backgroundColor = '#c35c5a';
   }
 }
 
