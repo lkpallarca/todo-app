@@ -1,5 +1,6 @@
 // HELPER FUNCTIONS
 let TODO_LIST = [];
+let TODO_GROUP = [];
 let todo_created_at = [];
 let bg_images = [];
 let font_color = false;
@@ -192,6 +193,8 @@ $('id', 'add-trigger-future').addEventListener('click', (event) => {
   }
   TODO_LIST.push(new_task);
   todo_created_at.push(parseInt($('id', 'todo-input-date-future').value));
+  const sortedDates = todo_created_at.slice().sort((a,b)=> a - b);
+  todo_created_at = sortedDates;
   setAll();
   reset();
   render();
@@ -205,7 +208,9 @@ const delOption = (task) => {
 }
 
 const bigDelOption = (date) => {
+  const filtered_tasks = TODO_LIST.filter(each => each.date_created !== date)
   const filtered_groups = todo_created_at.filter(each => each !== date)
+  TODO_LIST = filtered_tasks;
   todo_created_at = filtered_groups;
   setAll();
   render();
